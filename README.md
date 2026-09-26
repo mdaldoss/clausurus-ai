@@ -9,6 +9,8 @@ leaves your browser for a foreign provider.
 > Built at **Swiss {ai} Weeks 2026**.
 > Status: hackathon prototype. Not production-ready and not a legal compliance guarantee.
 
+![Clausurus demo](clausurus_demo.gif)
+
 ---
 
 ## The problem
@@ -76,6 +78,23 @@ inspectable by anyone, including a data protection officer.
 | Passport / ID number | Rule |
 | Health information | Apertus deep scan |
 | Indirect identifier | Apertus deep scan |
+
+## Evaluation
+
+Detection recall was benchmarked against a labelled set of 172 Swiss personal
+identifiers and against [ai4privacy](https://huggingface.co/ai4privacy)'s
+300k-example international PII dataset, alongside a false-positive check on 24
+ordinary (non-PII) requests. [Microsoft Presidio](https://microsoft.github.io/presidio/)
+is shown as a reference baseline.
+
+| | Swiss set — caught | ai4privacy — caught | False alarms (24 ordinary requests) |
+|---|---|---|---|
+| **Dataset size** | 172 Swiss identifiers | 300k international identifiers | 24 requests, no PII |
+| **Clausurus** | **98%** (3 of 172 missed) | **88.5%** (range 85–91%) | 3 (e.g. amounts like "CHF 1'250.50") |
+| Microsoft Presidio | 70% | 48% | 14 |
+
+"Caught" is recall on identifiers that should have been anonymized; "false
+alarms" counts requests with no PII where a placeholder was inserted anyway.
 
 ## Privacy controls
 
@@ -150,12 +169,12 @@ enabled, many *contextual* ones.
 - **Content confidentiality.** The *content* of a message (e.g. a medical situation) is
   still sent — only the identifiers are replaced.
 - **Files and images.** Currently text only.
-- **Detection errors.** Rules and models both miss things. This is a hackathon
-  prototype with no formal evaluation yet.
+- **Detection errors.** Rules and models both miss things — see [Evaluation](#evaluation)
+  for measured recall and false-alarm rates. This is a hackathon prototype.
 
 ## Roadmap
 
-- Formal evaluation of detection recall/precision against a labelled Swiss dataset
+- Expand the labelled evaluation set (see [Evaluation](#evaluation)) and add precision/latency benchmarks
 - Support for attachments (PDFs, scanned letters)
 - Multi-model side-by-side comparison on the same anonymized prompt
 - Deployment presets beyond Cloudflare (e.g. Netlify Edge Functions)
