@@ -121,6 +121,22 @@ Each conversation has its own settings, in the privacy side panel:
   server-side.
 - **Deploy target**: builds to a Cloudflare Workers bundle via Nitro.
 
+## Netlify proxy
+
+The root `netlify.toml` proxies all requests to `https://clausurus.lovable.app`,
+preserving the requested path and keeping the Netlify site's domain (including
+`clausurus.com`) in the browser address bar. The forced rewrite takes precedence
+over this repository's pages and static assets, so the Lovable deployment serves
+the site instead of the local app.
+
+Netlify publishes `dist`, matching Nitro's Netlify output directory. This explicit
+setting overrides any older `dist/client` publish-directory setting in Netlify.
+
+Keep `clausurus.com` connected to this Netlify site; no CNAME or DNS change is needed
+for this proxy. The rule takes effect on the next Netlify deployment. Absolute links,
+redirects, and domain-specific authentication from the upstream app may still need
+configuration in Lovable to work with `clausurus.com`.
+
 ## Installation
 
 You need Node.js — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
