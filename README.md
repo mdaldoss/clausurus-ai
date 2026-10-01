@@ -129,7 +129,7 @@ setting overrides any older `dist/client` publish-directory setting in Netlify.
 Keep `clausurus.com` connected to this Netlify site; no CNAME or DNS change is needed
 for this proxy. The rule takes effect on the next Netlify deployment. Absolute links,
 redirects, and domain-specific authentication from the upstream app may still need
-configuration in Lovable to work with `clausurus.com`.
+configuration in the upstream app to work with `clausurus.com`.
 
 ## Installation
 
