@@ -1,8 +1,9 @@
 [build]
-publish = "dist"
+  command = "bun run build"
+  publish = "dist"
 
 [[redirects]]
-from = "/*"
-to = "https://clausurus.lovable.app/:splat"
-status = 200
-force = true
+  from = "/*"
+  to = "https://clausurus.lovable.app/:splat"
+  status = 200
+  force = true
