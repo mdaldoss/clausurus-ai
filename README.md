@@ -121,6 +121,16 @@ Each conversation has its own settings, in the privacy side panel:
   server-side.
 - **Deploy target**: builds to a Cloudflare Workers bundle via Nitro.
 
+## Netlify proxy
+
+Netlify publishes `dist`, matching Nitro's Netlify output directory. This explicit
+setting overrides any older `dist/client` publish-directory setting in Netlify.
+
+Keep `clausurus.com` connected to this Netlify site; no CNAME or DNS change is needed
+for this proxy. The rule takes effect on the next Netlify deployment. Absolute links,
+redirects, and domain-specific authentication from the upstream app may still need
+configuration in the upstream app to work with `clausurus.com`.
+
 ## Installation
 
 You need Node.js — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
