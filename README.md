@@ -123,12 +123,6 @@ Each conversation has its own settings, in the privacy side panel:
 
 ## Netlify proxy
 
-The root `netlify.toml` proxies all requests to `https://clausurus.lovable.app`,
-preserving the requested path and keeping the Netlify site's domain (including
-`clausurus.com`) in the browser address bar. The forced rewrite takes precedence
-over this repository's pages and static assets, so the Lovable deployment serves
-the site instead of the local app.
-
 Netlify publishes `dist`, matching Nitro's Netlify output directory. This explicit
 setting overrides any older `dist/client` publish-directory setting in Netlify.
 
